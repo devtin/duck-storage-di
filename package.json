@@ -1,0 +1,132 @@
+{
+  "name": "duck-storage-di",
+  "description": "loads duck-storage entities from a path to provide a pleasure-di container",
+  "keywords": [
+    "duckfficer-method",
+    "dependency",
+    "injection"
+  ],
+  "author": "Martin Rafael Gonzalez <tin@devtin.io>",
+  "version": "1.0.0",
+  "main": "dist/duck-storage-di.js",
+  "module": "dist/duck-storage-di.mjs",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/devtin/duck-storage-di"
+  },
+  "scripts": {
+    "build": "npm run build:lib && npm run build:docs",
+    "build:lib": "rollup -c",
+    "build:docs": "npx jsdoc2md --plugin dmd-readme -d 3 --template node_modules/dmd-readme/docs.hbs --files dist/duck-storage-di.js > README.md",
+    "build:live": "nodemon -w src --exec yarn build",
+    "lint": "eslint --ext .js --ignore-path .gitignore src/",
+    "test": "NODE_ENV=test ava --serial --verbose",
+    "test:unit": "npm run test -- src/**/*.unit.js",
+    "test:all": "NODE_ENV=test ava --serial --verbose",
+    "release": "standard-version -a"
+  },
+  "files": [
+    "dist/*",
+    "src/*"
+  ],
+  "devDependencies": {
+    "@ava/babel": "^1.0.1",
+    "@rollup/plugin-alias": "^3.1.2",
+    "@rollup/plugin-commonjs": "^17.1.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "ava": "^3.15.0",
+    "babel-eslint": "^10.1.0",
+    "dmd-readme": "^1.0.1-beta",
+    "eslint": "^7.19.0",
+    "esm": "^3.2.25",
+    "jsdoc-to-markdown": "^6.0.1",
+    "nodemon": "^2.0.7",
+    "nyc": "^15.1.0",
+    "rollup": "^2.38.5",
+    "rollup-plugin-babel-minify": "^10.0.0",
+    "standard-version": "^9.1.0"
+  },
+  "ava": {
+    "files": [
+      "test/**/*.test.js",
+      "src/**/*.unit.js"
+    ],
+    "require": [
+      "esm"
+    ],
+    "babel": true
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "parser": "babel-eslint",
+    "env": {
+      "es6": true,
+      "node": true
+    },
+    "globals": {
+      "BigInt": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 2018,
+      "sourceType": "module"
+    }
+  },
+  "standard-version": {
+    "scripts": {
+      "prerelease": "npm run lint && npm run build && npm run test",
+      "precommit": "npm run --silent build > /dev/null 2>&1 && git add ."
+    },
+    "types": [
+      {
+        "type": "feat",
+        "section": "Features"
+      },
+      {
+        "type": "fix",
+        "section": "Bug Fixes"
+      },
+      {
+        "type": "chore",
+        "section": "Chore"
+      },
+      {
+        "type": "docs",
+        "section": "Docs"
+      },
+      {
+        "type": "refactor",
+        "section": "Refactor"
+      },
+      {
+        "type": "style",
+        "hidden": true
+      },
+      {
+        "type": "perf",
+        "hidden": true
+      },
+      {
+        "type": "test",
+        "section": "Tests"
+      }
+    ]
+  },
+  "config": {
+    "readme": {
+      "features": {
+        "base": "src/",
+        "match": [
+          "**/*.unit.js"
+        ]
+      }
+    }
+  },
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "duck-storage": "0.0.24",
+    "js-dir-into-json": "^2.7.1",
+    "lodash": "^4.17.20",
+    "pleasure-di": "^1.1.0"
+  }
+}
