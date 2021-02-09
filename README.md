@@ -34,7 +34,7 @@ const customerData = {
   firstName: 'Martin',
   lastName: 'Gonzalez',
   email: 'tin@devtin.io',
-  phoneNumber: 7864512447
+  phoneNumber: 3051234567
 }
 const customer = await CustomerRack.create(customerData)
 t.like(customer, customerData)
@@ -54,7 +54,7 @@ const doc = await CustomerRack.create({
   firstName: 'Martin',
   lastName: 'Gonzalez',
   email: 'tin@devtin.io',
-  phoneNumber: 7864512447
+  phoneNumber: 3051234567
 })
 
 let eventReceived

@@ -19,7 +19,7 @@ test('Loads entities from directory', async (t) => {
     firstName: 'Martin',
     lastName: 'Gonzalez',
     email: 'tin@devtin.io',
-    phoneNumber: 7864512447
+    phoneNumber: 3051234567
   }
   const customer = await CustomerRack.create(customerData)
   t.like(customer, customerData)
@@ -34,7 +34,7 @@ test('Loads methods', async (t) => {
     firstName: 'Martin',
     lastName: 'Gonzalez',
     email: 'tin@devtin.io',
-    phoneNumber: 7864512447
+    phoneNumber: 3051234567
   })
 
   let eventReceived
