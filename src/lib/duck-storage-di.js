@@ -8,6 +8,8 @@ import Promise from 'bluebird'
 
 const { Schema } = Duckfficer
 
+const loaderExtensions = ['!__tests__', '!*.unit.js', '!*.spec.js', '!*.test.js', '*.js', '*.mjs']
+
 const upperCamelCase = (s) => {
   return startCase(s).replace(/[\s]+/g, '')
 }
@@ -46,8 +48,8 @@ const loadRacks = async ({
     const duckRackModelPath = path.join(dir, rackName, modelPath)
     const duckRackMethodsPath = path.join(dir, rackName, methodsPath)
 
-    const duckData = await jsDirIntoJson(duckRackModelPath)
-    const duckRackMethods = isDir(duckRackMethodsPath) ? await jsDirIntoJson(duckRackMethodsPath) : undefined
+    const duckData = await jsDirIntoJson(duckRackModelPath, { extensions: loaderExtensions })
+    const duckRackMethods = isDir(duckRackMethodsPath) ? await jsDirIntoJson(duckRackMethodsPath, { extensions: loaderExtensions }) : undefined
 
     const duckModel = new Duck({
       schema: duckData.schema instanceof Schema ? duckData.schema : new Schema(duckData.schema, { methods: injectContainerInMethods(container, duckData.methods) })
