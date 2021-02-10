@@ -1,5 +1,5 @@
 /*!
- * duck-storage-di v1.0.2
+ * duck-storage-di v1.0.3
  * (c) 2020-2021 Martin Rafael Gonzalez <tin@devtin.io>
  * MIT
  */
@@ -22,6 +22,8 @@ var startCase__default = /*#__PURE__*/_interopDefaultLegacy(startCase);
 var Promise__default = /*#__PURE__*/_interopDefaultLegacy(Promise);
 
 const { Schema } = duckStorage.Duckfficer;
+
+const loaderExtensions = ['!__tests__', '!*.unit.js', '!*.spec.js', '!*.test.js', '*.js', '*.mjs'];
 
 const upperCamelCase = (s) => {
   return startCase__default['default'](s).replace(/[\s]+/g, '')
@@ -61,8 +63,8 @@ const loadRacks = async ({
     const duckRackModelPath = path__default['default'].join(dir, rackName, modelPath);
     const duckRackMethodsPath = path__default['default'].join(dir, rackName, methodsPath);
 
-    const duckData = await jsDirIntoJson.jsDirIntoJson(duckRackModelPath);
-    const duckRackMethods = isDir(duckRackMethodsPath) ? await jsDirIntoJson.jsDirIntoJson(duckRackMethodsPath) : undefined;
+    const duckData = await jsDirIntoJson.jsDirIntoJson(duckRackModelPath, { extensions: loaderExtensions });
+    const duckRackMethods = isDir(duckRackMethodsPath) ? await jsDirIntoJson.jsDirIntoJson(duckRackMethodsPath, { extensions: loaderExtensions }) : undefined;
 
     const duckModel = new duckStorage.Duck({
       schema: duckData.schema instanceof Schema ? duckData.schema : new Schema(duckData.schema, { methods: injectContainerInMethods(container, duckData.methods) })
