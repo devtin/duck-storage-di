@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.4](https://github.com/devtin/duck-storage-di/compare/v1.0.3...v1.0.4) (2021-02-14)
+
+
+### Chore
+
+* **dependencies:** update ([0dd2c57](https://github.com/devtin/duck-storage-di/commit/0dd2c57813216f36db333b0c60717bfaa56b7e35))
+
 ### [1.0.3](https://github.com/devtin/duck-storage-di/compare/v1.0.2...v1.0.3) (2021-02-10)
 
 
