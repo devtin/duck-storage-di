@@ -38,12 +38,12 @@
     "ava": "^3.15.0",
     "babel-eslint": "^10.1.0",
     "dmd-readme": "^1.0.1-beta",
-    "eslint": "^7.19.0",
+    "eslint": "^7.20.0",
     "esm": "^3.2.25",
     "jsdoc-to-markdown": "^6.0.1",
     "nodemon": "^2.0.7",
     "nyc": "^15.1.0",
-    "rollup": "^2.38.5",
+    "rollup": "^2.39.0",
     "rollup-plugin-babel-minify": "^10.0.0",
     "standard-version": "^9.1.0"
   },
@@ -124,7 +124,7 @@
   },
   "dependencies": {
     "bluebird": "^3.7.2",
-    "duck-storage": "0.0.24",
+    "duck-storage": "0.0.25",
     "js-dir-into-json": "^2.7.1",
     "lodash": "^4.17.20",
     "pleasure-di": "^1.1.0"
