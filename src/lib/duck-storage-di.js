@@ -73,7 +73,8 @@ export const getResolvers = async (directory, {
   modelPath,
   storageOptions
 }) => {
-  const availableRacks = getAvailableRacks(directory)
+  const racksPath = path.resolve(baseDir, directory)
+  const availableRacks = getAvailableRacks(racksPath)
   const removeSuffix = (nameWithSuffix) => {
     const removePattern = new RegExp(`${suffix}$`)
     return nameWithSuffix.replace(removePattern, '')
@@ -84,6 +85,7 @@ export const getResolvers = async (directory, {
   let racks
 
   return {
+    storage,
     resolvers: {
       [suffix] (rackName) {
         const rackNameWithoutSuffix = removeSuffix(rackName)
@@ -95,7 +97,7 @@ export const getResolvers = async (directory, {
     },
     async registerContainer (container) {
       racks = await loadRacks({
-        dir: path.resolve(baseDir, directory),
+        dir: racksPath,
         racksNames: availableRacks,
         methodsPath,
         modelPath,
@@ -118,7 +120,7 @@ export const getResolvers = async (directory, {
  * @param {String} [methodsPath=methods]
  * @param {String} [suffix=Rack]
  * @param {Object} [storageOptions]
- * @return {Object} container
+ * @return {{ container, storage }} container and storage
  */
 export const duckStorageDi = async (directory, {
   baseDir = process.cwd(),
@@ -127,7 +129,7 @@ export const duckStorageDi = async (directory, {
   methodsPath = 'methods',
   storageOptions
 } = {}) => {
-  const { resolvers, registerContainer } = await getResolvers(directory, {
+  const { resolvers, registerContainer, storage } = await getResolvers(directory, {
     baseDir,
     suffix,
     modelPath,
@@ -136,5 +138,5 @@ export const duckStorageDi = async (directory, {
   })
   const container = pleasureDi(resolvers)
   await registerContainer(container)
-  return container
+  return { container, storage }
 }

@@ -6,11 +6,11 @@ import { duckStorageDi } from './duck-storage-di.js'
 let container
 
 test.before(async () => {
-  container = await duckStorageDi(path.join(__dirname, './__tests__/fixtures'), {
+  ({ container } = await duckStorageDi(path.join(__dirname, './__tests__/fixtures'), {
     storageOptions: {
       plugins: [plugins.InMemory()]
     }
-  })
+  }))
 })
 
 test('Loads entities from directory', async (t) => {
