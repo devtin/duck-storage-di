@@ -7,7 +7,7 @@
     "injection"
   ],
   "author": "Martin Rafael Gonzalez <tin@devtin.io>",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "dist/duck-storage-di.js",
   "module": "dist/duck-storage-di.mjs",
   "license": "MIT",

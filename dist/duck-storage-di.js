@@ -1,5 +1,5 @@
 /*!
- * duck-storage-di v1.0.4
+ * duck-storage-di v1.0.5
  * (c) 2020-2021 Martin Rafael Gonzalez <tin@devtin.io>
  * MIT
  */
@@ -88,7 +88,8 @@ const getResolvers = async (directory, {
   modelPath,
   storageOptions
 }) => {
-  const availableRacks = getAvailableRacks(directory);
+  const racksPath = path__default['default'].resolve(baseDir, directory);
+  const availableRacks = getAvailableRacks(racksPath);
   const removeSuffix = (nameWithSuffix) => {
     const removePattern = new RegExp(`${suffix}$`);
     return nameWithSuffix.replace(removePattern, '')
@@ -99,6 +100,7 @@ const getResolvers = async (directory, {
   let racks;
 
   return {
+    storage,
     resolvers: {
       [suffix] (rackName) {
         const rackNameWithoutSuffix = removeSuffix(rackName);
@@ -110,7 +112,7 @@ const getResolvers = async (directory, {
     },
     async registerContainer (container) {
       racks = await loadRacks({
-        dir: path__default['default'].resolve(baseDir, directory),
+        dir: racksPath,
         racksNames: availableRacks,
         methodsPath,
         modelPath,
@@ -133,7 +135,7 @@ const getResolvers = async (directory, {
  * @param {String} [methodsPath=methods]
  * @param {String} [suffix=Rack]
  * @param {Object} [storageOptions]
- * @return {Object} container
+ * @return {{ container, storage }} container and storage
  */
 const duckStorageDi = async (directory, {
   baseDir = process.cwd(),
@@ -142,7 +144,7 @@ const duckStorageDi = async (directory, {
   methodsPath = 'methods',
   storageOptions
 } = {}) => {
-  const { resolvers, registerContainer } = await getResolvers(directory, {
+  const { resolvers, registerContainer, storage } = await getResolvers(directory, {
     baseDir,
     suffix,
     modelPath,
@@ -151,7 +153,7 @@ const duckStorageDi = async (directory, {
   });
   const container = pleasureDi.pleasureDi(resolvers);
   await registerContainer(container);
-  return container
+  return { container, storage }
 };
 
 exports.duckStorageDi = duckStorageDi;

@@ -84,7 +84,7 @@ t.like(eventReceived, newDoc.eventsDispatched[0])
 | [suffix] | <code>String</code> | <code>Rack</code> | 
 | [storageOptions] | <code>Object</code> |  | 
 
-**Returns**: <code>Object</code> - container  
+**Returns**: <code>Object</code> - container and storage  
 
 * * *
 

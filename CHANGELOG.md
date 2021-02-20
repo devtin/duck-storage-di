@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.5](https://github.com/devtin/duck-storage-di/compare/v1.0.4...v1.0.5) (2021-02-20)
+
+
+### Bug Fixes
+
+* return container and storage ([52f8bb1](https://github.com/devtin/duck-storage-di/commit/52f8bb1d749c718540545651953a2330d9fd1d81))
+
 ### [1.0.4](https://github.com/devtin/duck-storage-di/compare/v1.0.3...v1.0.4) (2021-02-14)
 
 
